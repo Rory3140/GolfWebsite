@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "admin";
+$password = "admin";
 $dbname = "golf website";
 
 // Create connection
