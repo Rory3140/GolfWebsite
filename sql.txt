@@ -1,79 +1,98 @@
-CREATE TABLE clubs (
+DROP VIEW
+    club_average_distance_view;
+
+DROP
+PROCEDURE update_average_distance;
+
+DROP TRIGGER
+    recalculate_average_distance;
+
+DROP TRIGGER
+    calculate_average_distance;
+
+DROP TABLE
+    shots;
+
+DROP TABLE
+    clubs;
+
+CREATE TABLE clubs(
     clubid VARCHAR(3),
     clubname VARCHAR(20),
     averagedist INT,
-    PRIMARY KEY (clubid)
+    PRIMARY KEY(clubid)
 );
 
-CREATE TABLE shots (
+ CREATE TABLE shots(
     shotid INT AUTO_INCREMENT,
     clubid VARCHAR(3),
-    distance INT,
+    DISTANCE INT,
     datehit DATE,
-    PRIMARY KEY (shotid),
-    FOREIGN KEY (clubid) REFERENCES clubs (clubid) ON DELETE CASCADE
+    PRIMARY KEY(shotid),
+    FOREIGN KEY(clubid) REFERENCES clubs(clubid) ON DELETE CASCADE
 );
 
-
-DELIMITER //
-
-CREATE TRIGGER calculate_average_distance
-AFTER INSERT ON shots
-FOR EACH ROW
+ DELIMITER
+    //
+CREATE TRIGGER calculate_average_distance AFTER INSERT ON
+    shots FOR EACH ROW
 BEGIN
-    CALL update_average_distance(NEW.clubid);
+    CALL
+        update_average_distance(NEW.clubid) ;
 END //
-
-CREATE TRIGGER recalculate_average_distance
-AFTER DELETE ON shots
-FOR EACH ROW
+CREATE TRIGGER recalculate_average_distance AFTER DELETE
+ON
+    shots FOR EACH ROW
 BEGIN
-    CALL update_average_distance(OLD.clubid);
+    CALL
+        update_average_distance(OLD.clubid) ;
+
 END //
-
-CREATE PROCEDURE update_average_distance (IN club_id VARCHAR(3))
+CREATE PROCEDURE update_average_distance(IN club_id VARCHAR(3))
 BEGIN
-    DECLARE total_distance INT;
-    DECLARE num_shots INT;
-    DECLARE avg_distance DECIMAL(10, 2);
-    
-    -- Calculate the total distance and the number of shots for the club
-    SELECT SUM(distance), COUNT(*) INTO total_distance, num_shots
-    FROM shots
-    WHERE clubid = club_id;
-    
+    DECLARE
+        total_distance INT ; DECLARE num_shots INT ; DECLARE avg_distance DECIMAL(10, 2) ;
+        -- Calculate the total distance and the number of shots for the club
+    SELECT
+        SUM(DISTANCE),
+        COUNT(*)
+    INTO total_distance, num_shots
+FROM
+    shots
+WHERE
+    clubid = club_id ;
     -- Calculate the average distance
-    SET avg_distance = total_distance / num_shots;
-    
+SET
+    avg_distance = total_distance / num_shots ;
     -- Update the averagedist in the clubs table
-    UPDATE clubs
-    SET averagedist = avg_distance
-    WHERE clubid = club_id;
+UPDATE
+    clubs
+SET
+    averagedist = avg_distance
+WHERE
+    clubid = club_id ;
+
 END //
+DELIMITER
+    ;
 
-DELIMITER ;
+CREATE VIEW club_average_distance_view AS SELECT
+    clubname,
+    averagedist
+FROM
+    clubs
+ORDER BY
+    averagedist
+DESC
+    ;
 
-CREATE VIEW club_average_distance_view AS
-SELECT clubname, averagedist
-FROM clubs
-ORDER BY averagedist DESC;
+INSERT INTO clubs(clubid, clubname, averagedist)
+VALUES('DRV', 'Driver', -1),('WD3', 'Wood 3', -1),('WD5', 'Wood 5', -1),('IR3', 'Iron 3', -1),('IR4', 'Iron 4', -1),('IR5', 'Iron 5', -1),('IR6', 'Iron 6', -1),('IR7', 'Iron 7', -1),('IR8', 'Iron 8', -1),('IR9', 'Iron 9', -1),('PW', 'Pitching Wedge', -1),('SW', 'Sand Wedge', -1),('PT', 'Putter', -1);
 
-SELECT * FROM club_average_distance_view;
-
-INSERT INTO clubs (clubid, clubname, averagedist)
-VALUES ('DRV', 'Driver', -1),
-       ('WD3', 'Wood 3', -1),
-       ('WD5', 'Wood 5', -1),
-       ('IR3', 'Iron 3', -1),
-       ('IR4', 'Iron 4', -1),
-       ('IR5', 'Iron 5', -1),
-       ('IR6', 'Iron 6', -1),
-       ('IR7', 'Iron 7', -1),
-       ('IR8', 'Iron 8', -1),
-       ('IR9', 'Iron 9', -1),
-       ('PW', 'Pitching Wedge', -1),
-       ('SW', 'Sand Wedge', -1),
-       ('PT', 'Putter', -1);
+SELECT
+    *
+FROM
+    club_average_distance_view;
 
 INSERT INTO shots (clubid, distance, datehit)
 VALUES ('DRV', 250, '2023-07-06');
