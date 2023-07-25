@@ -6,6 +6,7 @@ html {
 body {
     display: table-cell;
     vertical-align: middle;
+    margin-top: 50px;
 }
 
 header {
@@ -25,7 +26,6 @@ header {
 .mainContainer {
     background-color: #EFEFEF;
     border-radius: 50px;
-    margin-top: 50px;
     padding-bottom: 50px;
     width: 400px;
 }
