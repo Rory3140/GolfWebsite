@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "golf website";
+$username = "admin";
+$password = "admin";
+$dbname = "golfwebsite";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
