@@ -6,6 +6,7 @@ html {
 body {
     display: table-cell;
     vertical-align: middle;
+    padding-top: 50px;
 }
 
 header {
