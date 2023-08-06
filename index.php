@@ -12,7 +12,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
     VALUES ('$club', '$distance', '2023-07-07');";
 
     if ($conn->query($sql) === FALSE) {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>";
     }
 }
 ?>
@@ -23,19 +23,12 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Golf Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/LoginPage/style.css">
 </head>
 
 <body>
-    <div class="mainContainer">
-        <header>
-            <h1>Golf Stats</h1>
-        </header>
-
-        <div class="default">
-            <h2>Statistics</h2>
-        </div>
-
+    <div class="container">
+        <h1>Golf Stats</h1>
         <form action="" method="POST" name="statsForm">
             <?php
             $rand = rand();
@@ -45,7 +38,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 
             <div class="default">
                 <label for="club">Select Your Club: </label>
-                <select name="club" class = "select">
+                <select name="club" class="textbox">
                     <option value="DRV" <?php if ($_SESSION['previousClub'] == 'DRV')
                         echo 'selected'; ?>>Driver</option>
                     <option value="WD3" <?php if ($_SESSION['previousClub'] == 'WD3')
@@ -79,7 +72,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
             <br>
             <div class="default">
                 <label for="distance">Input Distince Hit: </label>
-                <input type="number" class = "select" min="0" max="999" name="distance" required>
+                <input type="number" class="textbox" min="0" max="999" name="distance" required>
             </div>
             <div class="default">
                 <input type="submit" class="button" name="submitBtn" value="Add Shot">
@@ -105,10 +98,6 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
             </table>
         </div>
     </div>
-
-    <footer>
-
-    </footer>
     <script src="script.js"></script>
 </body>
 
