@@ -1,6 +1,19 @@
 <?php
 include_once 'conn.php';
-session_start();
+
+session_start(); // Start the session
+
+// Check if the user is logged in (userid is stored in the session)
+if (!isset($_SESSION['userid'])) {
+    // User is not logged in, redirect to the login page
+    header('Location: index.php');
+    exit;
+}
+
+// Access the userid and username from the session
+$userid = $_SESSION['userid'];
+$username = $_SESSION['username'];
+
 $_SESSION['previousClub'] = "DRV";
 
 if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
@@ -29,6 +42,9 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 <body>
     <div class="container">
         <h1>Golf Stats</h1>
+        <h2>Welcome,
+            <?php echo $username; ?>
+        </h2>
         <form action="" method="POST" name="statsForm">
             <?php
             $rand = rand();
