@@ -29,7 +29,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 <body>
     <div class="mainContainer">
         <header>
-            <h1>Golf Website</h1>
+            <h1>Golf Stats</h1>
         </header>
 
         <div class="default">
