@@ -40,7 +40,8 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 </head>
 
 <body>
-    <a href="logout.php">Logout</a>
+    <a href="logout.php" class="button" id="logout">Logout</a>
+    
     <div class="container">
         <h1>Golf Stats</h1>
         <h2>Welcome,
@@ -111,7 +112,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
             <table>
                 <tr>
                     <th>Club</th>
-                    <th>Average Distance(ft)</th>
+                    <th>Average Distance(yds)</th>
                 </tr>
                 <?php
                 $sql = "SELECT ad.club, ad.avg_distance
