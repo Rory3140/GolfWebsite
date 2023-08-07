@@ -40,7 +40,8 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 </head>
 
 <body>
-    <a href="logout.php" class="button" id="logout">Logout</a>
+    <a href="/LoginPage/homepage.php" class="button" id="home">Home</a>
+    <a href="/LoginPage/logout.php" class="button" id="logout">Logout</a>
     
     <div class="container">
         <h1>Golf Stats</h1>
