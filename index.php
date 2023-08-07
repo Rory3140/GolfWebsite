@@ -55,33 +55,33 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
             <div class="default">
                 <label for="club">Select Your Club: </label>
                 <select name="club" class="textbox">
-                    <option value="DRV" <?php if ($_SESSION['previousClub'] == 'DRV')
+                    <option value="Driver" <?php if ($_SESSION['previousClub'] == 'Driver')
                         echo 'selected'; ?>>Driver</option>
-                    <option value="WD3" <?php if ($_SESSION['previousClub'] == 'WD3')
+                    <option value="3 Wood" <?php if ($_SESSION['previousClub'] == '3 Wood')
                         echo 'selected'; ?>>3 Wood</option>
-                    <option value="WD5" <?php if ($_SESSION['previousClub'] == 'WD5')
+                    <option value="5 Wood" <?php if ($_SESSION['previousClub'] == '5 Wood')
                         echo 'selected'; ?>>5 Wood</option>
-                    <option value="IR3" <?php if ($_SESSION['previousClub'] == 'IR3')
+                    <option value="3 Iron" <?php if ($_SESSION['previousClub'] == '3 Iron')
                         echo 'selected'; ?>>3 Iron</option>
-                    <option value="IR4" <?php if ($_SESSION['previousClub'] == 'IR4')
+                    <option value="4 Iron" <?php if ($_SESSION['previousClub'] == '4 Iron')
                         echo 'selected'; ?>>4 Iron</option>
-                    <option value="IR5" <?php if ($_SESSION['previousClub'] == 'IR5')
+                    <option value="5 Iron" <?php if ($_SESSION['previousClub'] == '5 Iron')
                         echo 'selected'; ?>>5 Iron</option>
-                    <option value="IR6" <?php if ($_SESSION['previousClub'] == 'IR6')
+                    <option value="6 Iron" <?php if ($_SESSION['previousClub'] == '6 Iron')
                         echo 'selected'; ?>>6 Iron</option>
-                    <option value="IR7" <?php if ($_SESSION['previousClub'] == 'IR7')
+                    <option value="7 Iron" <?php if ($_SESSION['previousClub'] == '7 Iron')
                         echo 'selected'; ?>>7 Iron</option>
-                    <option value="IR8" <?php if ($_SESSION['previousClub'] == 'IR8')
+                    <option value="8 Iron" <?php if ($_SESSION['previousClub'] == '8 Iron')
                         echo 'selected'; ?>>8 Iron</option>
-                    <option value="IR9" <?php if ($_SESSION['previousClub'] == 'IR9')
+                    <option value="9 Iron" <?php if ($_SESSION['previousClub'] == '9 Iron')
                         echo 'selected'; ?>>9 Iron</option>
-                    <option value="PW" <?php if ($_SESSION['previousClub'] == 'PW')
+                    <option value="Pitching Wedge" <?php if ($_SESSION['previousClub'] == 'Pitching Wedge')
                         echo 'selected'; ?>>Pitching Wedge
                     </option>
-                    <option value="SW" <?php if ($_SESSION['previousClub'] == 'SW')
+                    <option value="Sand Wedge" <?php if ($_SESSION['previousClub'] == 'Sand Wedge')
                         echo 'selected'; ?>>Sand Wedge
                     </option>
-                    <option value="PT" <?php if ($_SESSION['previousClub'] == 'PT')
+                    <option value="Putter" <?php if ($_SESSION['previousClub'] == 'Putter')
                         echo 'selected'; ?>>Putter</option>
                 </select>
             </div>
@@ -102,12 +102,15 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
                     <th>Average Distance(ft)</th>
                 </tr>
                 <?php
-                $sql = "SELECT * FROM club_average_distance_view WHERE averagedist > 0;";
+                $sql = "SELECT ad.club, ad.avg_distance
+                FROM average_distances ad
+                JOIN users u ON ad.userid = u.userid
+                WHERE u.userid = '$userid';";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<tr><td>" . $row["clubname"] . "</td><td>" . $row["averagedist"] . "</td></tr>";
+                        echo "<tr><td>" . $row["club"] . "</td><td>" . $row["avg_distance"] . "</td></tr>";
                     }
                 }
                 ?>
