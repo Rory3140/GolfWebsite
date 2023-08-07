@@ -21,8 +21,8 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
     $_SESSION['previousClub'] = $club;
     $distance = $_POST['distance'];
 
-    $sql = "INSERT INTO shots (clubid, distance, datehit)
-    VALUES ('$club', '$distance', '2023-07-07');";
+    $sql = "INSERT INTO shots (userid, club, distance)
+    VALUES ('$userid','$club', '$distance');";
 
     if ($conn->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>";
@@ -40,6 +40,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 </head>
 
 <body>
+    <a href="logout.php">Logout</a>
     <div class="container">
         <h1>Golf Stats</h1>
         <h2>Welcome,
@@ -56,25 +57,35 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
                 <label for="club">Select Your Club: </label>
                 <select name="club" class="textbox">
                     <option value="Driver" <?php if ($_SESSION['previousClub'] == 'Driver')
-                        echo 'selected'; ?>>Driver</option>
+                        echo 'selected'; ?>>Driver
+                    </option>
                     <option value="3 Wood" <?php if ($_SESSION['previousClub'] == '3 Wood')
-                        echo 'selected'; ?>>3 Wood</option>
+                        echo 'selected'; ?>>3 Wood
+                    </option>
                     <option value="5 Wood" <?php if ($_SESSION['previousClub'] == '5 Wood')
-                        echo 'selected'; ?>>5 Wood</option>
+                        echo 'selected'; ?>>5 Wood
+                    </option>
                     <option value="3 Iron" <?php if ($_SESSION['previousClub'] == '3 Iron')
-                        echo 'selected'; ?>>3 Iron</option>
+                        echo 'selected'; ?>>3 Iron
+                    </option>
                     <option value="4 Iron" <?php if ($_SESSION['previousClub'] == '4 Iron')
-                        echo 'selected'; ?>>4 Iron</option>
+                        echo 'selected'; ?>>4 Iron
+                    </option>
                     <option value="5 Iron" <?php if ($_SESSION['previousClub'] == '5 Iron')
-                        echo 'selected'; ?>>5 Iron</option>
+                        echo 'selected'; ?>>5 Iron
+                    </option>
                     <option value="6 Iron" <?php if ($_SESSION['previousClub'] == '6 Iron')
-                        echo 'selected'; ?>>6 Iron</option>
+                        echo 'selected'; ?>>6 Iron
+                    </option>
                     <option value="7 Iron" <?php if ($_SESSION['previousClub'] == '7 Iron')
-                        echo 'selected'; ?>>7 Iron</option>
+                        echo 'selected'; ?>>7 Iron
+                    </option>
                     <option value="8 Iron" <?php if ($_SESSION['previousClub'] == '8 Iron')
-                        echo 'selected'; ?>>8 Iron</option>
+                        echo 'selected'; ?>>8 Iron
+                    </option>
                     <option value="9 Iron" <?php if ($_SESSION['previousClub'] == '9 Iron')
-                        echo 'selected'; ?>>9 Iron</option>
+                        echo 'selected'; ?>>9 Iron
+                    </option>
                     <option value="Pitching Wedge" <?php if ($_SESSION['previousClub'] == 'Pitching Wedge')
                         echo 'selected'; ?>>Pitching Wedge
                     </option>
@@ -82,13 +93,14 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
                         echo 'selected'; ?>>Sand Wedge
                     </option>
                     <option value="Putter" <?php if ($_SESSION['previousClub'] == 'Putter')
-                        echo 'selected'; ?>>Putter</option>
+                        echo 'selected'; ?>>Putter
+                    </option>
                 </select>
             </div>
             <br>
             <div class="default">
                 <label for="distance">Input Distince Hit: </label>
-                <input type="number" class="textbox" min="0" max="999" name="distance" required>
+                <input type="number" class="textbox" min="0" max="999" step=".01" name="distance" required>
             </div>
             <div class="default">
                 <input type="submit" class="button" name="submitBtn" value="Add Shot">
@@ -105,7 +117,8 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
                 $sql = "SELECT ad.club, ad.avg_distance
                 FROM average_distances ad
                 JOIN users u ON ad.userid = u.userid
-                WHERE u.userid = '$userid';";
+                WHERE u.userid = '$userid'
+                ORDER BY ad.avg_distance DESC;";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
