@@ -40,9 +40,18 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 </head>
 
 <body>
-    <a href="/LoginPage/homepage.php" class="button" id="home">Home</a>
-    <a href="/LoginPage/logout.php" class="button" id="logout">Logout</a>
-    
+
+    <nav class="navbar">
+        <div class="menu-icon">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <a href="/LoginPage/homepage.php" class="button">Home</a>
+        <a href="" class="button">Profile</a>
+        <a href="/LoginPage/logout.php" class="button" id="logout">Logout</a>
+    </nav>
+
     <div class="container">
         <h1>Golf Stats</h1>
         <h2>Welcome,
@@ -132,6 +141,8 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
             </table>
         </div>
     </div>
+
+    <script src="/LoginPage/script.js"></script>
 </body>
 
 </html>
