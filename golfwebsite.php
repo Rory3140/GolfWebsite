@@ -41,8 +41,8 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 
 <body>
 
-    <nav class="navbar">
-        <div class="menu-icon">
+    <nav id="navbar">
+        <div id="menu-icon">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
