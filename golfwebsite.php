@@ -6,7 +6,7 @@ session_start(); // Start the session
 // Check if the user is logged in (userid is stored in the session)
 if (!isset($_SESSION['userid'])) {
     // User is not logged in, redirect to the login page
-    header('Location: /LoginPage/login.php');
+    header('Location: ../LoginPage/login.php');
     exit;
 }
 
@@ -36,7 +36,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Golf Website</title>
-    <link rel="stylesheet" href="/LoginPage/style.css">
+    <link rel="stylesheet" href="../LoginPage/style.css">
 </head>
 
 <body>
@@ -47,9 +47,9 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <a href="/LoginPage/homepage.php" class="button">Home</a>
+        <a href="../LoginPage/homepage.php" class="button">Home</a>
         <a href="" class="button">Profile</a>
-        <a href="/LoginPage/logout.php" class="button" id="logout">Logout</a>
+        <a href="../LoginPage/logout.php" class="button" id="logout">Logout</a>
     </nav>
 
     <div class="container">
