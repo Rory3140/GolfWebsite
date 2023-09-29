@@ -37,6 +37,8 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Golf Website</title>
     <link rel="stylesheet" href="../loginPage/style.css">
+    <link rel="icon" href="../loginPage/images/websiteIcon">
+    
 </head>
 
 <body>
