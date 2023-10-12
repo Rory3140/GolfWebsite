@@ -38,7 +38,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
     <title>Golf Website</title>
     <link rel="stylesheet" href="../loginPage/style.css">
     <link rel="icon" href="../loginPage/images/websiteIcon.ico">
-    
+
 </head>
 
 <body>
