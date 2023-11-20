@@ -1,5 +1,5 @@
 <?php
-include_once 'conn.php';
+include_once '../loginPage/conn.php';
 
 session_start(); // Start the session
 
