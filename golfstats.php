@@ -1,5 +1,5 @@
 <?php
-include_once '../loginPage/conn.php';
+include_once '../conn.php';
 
 session_start(); // Start the session
 
@@ -36,8 +36,8 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Golf Website</title>
-    <link rel="stylesheet" href="../loginPage/style.css">
-    <link rel="icon" href="../loginPage/images/websiteIcon.ico">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../images/websiteIcon.ico">
 
 </head>
 
@@ -49,7 +49,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <a href="../loginPage/home.php" class="button">Home</a>
+        <a href="../home.php" class="button">Home</a>
         <a href="" class="button">Profile</a>
         <a href="../loginPage/logout.php" class="button" id="logout">Logout</a>
     </nav>
@@ -144,7 +144,7 @@ if (isset($_POST['submitBtn']) && $_POST['randcheck'] == $_SESSION['rand']) {
         </div>
     </div>
 
-    <script src="../loginPage/script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>
