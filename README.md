@@ -1,2 +1,2 @@
-# Golf Stata
-Author: Rory Wood
+# Golf Stats
+## Author: Rory Wood
